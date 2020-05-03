@@ -60,7 +60,7 @@
     "html2canvas": "^1.0.0-rc.5",
     "ionicons": "^4.5.5",
     "ionicons-npm": "^2.0.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jsonwebtoken": "^8.5.1",
     "jspdf": "^1.5.3",
     "jw-bootstrap-switch-ng2": "^2.0.5",
