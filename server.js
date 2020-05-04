@@ -456,7 +456,7 @@ app.post('/forms/request',(req, res)=>{
 })
 
  
-const port = process.env.port || 4600;
+const port = 4600;
 app.listen(port, (req, res)=>{
     console.log('server start at '+ port);
 });
