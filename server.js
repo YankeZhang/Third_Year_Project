@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'dist')));
 // app.use('/posts', posts);
 var corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: 'http://51.140.28.157/',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
   }
 app.use(cors(corsOptions))
