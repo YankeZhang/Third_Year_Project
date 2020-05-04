@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'dist')));
 // app.use('/posts', posts);
 var corsOptions = {
-    origin: 'http://51.140.28.157/',
+    origin: 'http://localhost:4200',
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
   }
 app.use(cors(corsOptions))
@@ -456,7 +456,7 @@ app.post('/forms/request',(req, res)=>{
 })
 
  
-const port = 4600;
+const port = process.env.port || 4600;
 app.listen(port, (req, res)=>{
     console.log('server start at '+ port);
 });
