@@ -10,7 +10,7 @@ export class LoginService {
 
   login(user){
     
-    return this.http.post('http://localhost:4600/login', user);
+    return this.http.post('http://51.140.28.157:4600/login', user);
 
 }
 
@@ -20,6 +20,6 @@ export class LoginService {
 
   register(form:any){
     
-    return this.http.post('http://localhost:4600/register', form);
+    return this.http.post('http://51.140.28.157:4600/register', form);
   }
 }
