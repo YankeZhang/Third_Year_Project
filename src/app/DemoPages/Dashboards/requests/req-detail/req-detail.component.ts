@@ -43,7 +43,7 @@ export class ReqDetailComponent implements OnInit {
     this.productId = this.routeInfo.snapshot.queryParams['id'];
 
   //get request detail with current id
-    this.service.getOneRequest(this.productId).pipe(map((req:any)=>{
+    this.service.getOneRequest(this.productId, localStorage.getItem('username')).pipe(map((req:any)=>{
     
       if (req) {
         console.log(req)

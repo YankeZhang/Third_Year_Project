@@ -97,7 +97,7 @@ export class IBMAnalyticsComponent implements OnInit {
         this.date[i]=date;
         i++;
       })
-      //console.log(this.date)
+      console.log(this.date)
      })
     
   }

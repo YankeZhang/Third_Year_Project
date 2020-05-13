@@ -22,6 +22,7 @@ export class SidebarComponent implements OnInit {
   activeId = 'dashboardsMenu';
 
   toggleSidebar() {
+    console.log("togglesidebar"+this.globals.toggleSidebar)
     this.globals.toggleSidebar = !this.globals.toggleSidebar;
   }
 

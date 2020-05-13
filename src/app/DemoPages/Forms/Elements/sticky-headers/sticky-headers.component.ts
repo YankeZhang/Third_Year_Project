@@ -66,10 +66,6 @@ export class StickyHeadersComponent implements OnInit {
     if(!this.isFull){
       return
     }
-    
-  
-    
-    
     var form = {
       state: "pending",
       first_name: f.value.first_name, 
@@ -82,7 +78,7 @@ export class StickyHeadersComponent implements OnInit {
       start: f.value.start,
       end: {hour:f.value.start.hour+f.value.time.hour,minute:f.value.start.minute+f.value.time.minute,second:0},
       participant : f.value.participant,
-      type : f.value.type, 
+      type : f.value.event_type, 
       topic: f.value.topic,
       address1 : f.value.address1,
       address2 : f.value.address2,

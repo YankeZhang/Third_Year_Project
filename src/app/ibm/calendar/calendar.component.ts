@@ -85,24 +85,37 @@ export class IBMCalendarComponent {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [];
+  events: CalendarEvent[] = this.getEvents();
 
   activeDayIsOpen = true;
 
-  constructor(private modal: NgbModal, private http: HttpClient, private service: CalendarService) {
 
-  }
-  ngOnInit(){
+  getEvents(){
+    var result = []
     this.service.getAllRequests().pipe(map((req:Array<any>)=>{
       if (req) {
           req.forEach((erg) => {
-            
+            var color = colors.red
+            switch(erg.type){
+              case "Lecture":{
+                color = colors.green;
+              } break;
+              case "Hachathon":{
+                color = colors.yellow;
+              } break;
+              case "Student Support":{
+                color = colors.blue;
+              } break;
+              case "General Event":{
+                color = colors.red;
+              } break;
+            }
                 console.log(erg.Datetime)
-                this.events.push({
+                result = result.concat([{
                   start: new Date(erg.start),
                   end: new Date(erg.end),
                   title: erg.first_name+" from:"+erg.university+", event:"+erg.type+" location: "+erg.postcode,
-                  color: colors.red,
+                  color: color,
                   //actions: this.actions,
                   allDay: true,
                   resizable: {
@@ -110,10 +123,55 @@ export class IBMCalendarComponent {
                     afterEnd: false
                   },
                   draggable: false
-                },);
+                }]);
               });
               }
     })).subscribe(post=>{
+      console.log(this.events);
+      //this.request = post;
+    })
+    return result;
+  }
+  constructor(private modal: NgbModal, private http: HttpClient, private service: CalendarService) {
+
+  }
+  ngOnInit(){
+    this.service.getAllRequests().pipe(map((req:Array<any>)=>{
+      if (req) {
+          req.forEach((erg) => {
+            var color = colors.red
+            switch(erg.type){
+              case "Lecture":{
+                color = colors.green;
+              } break;
+              case "Hachathon":{
+                color = colors.yellow;
+              } break;
+              case "Student Support":{
+                color = colors.blue;
+              } break;
+              case "General Event":{
+                color = colors.red;
+              } break;
+            }
+                console.log(erg.Datetime)
+                this.events = this.events.concat([{
+                  start: new Date(erg.start),
+                  end: new Date(erg.end),
+                  title: erg.first_name+" from:"+erg.university+", event:"+erg.type+" location: "+erg.postcode,
+                  color: color,
+                  //actions: this.actions,
+                  allDay: true,
+                  resizable: {
+                    beforeStart: false,
+                    afterEnd: false
+                  },
+                  draggable: false
+                }]);
+              });
+              }
+    })).subscribe(post=>{
+      this.refresh.next()
       console.log(this.events);
       //this.request = post;
     })

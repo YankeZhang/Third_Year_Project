@@ -25,26 +25,28 @@ export class RequestsComponent {
   @ViewChildren(NgbdSortableHeaderDirective) headers: QueryList<NgbdSortableHeaderDirective>;
   req: Request[] = [];
   id_list: number[]=[];
+  private isEmpty = false;
   constructor(public service: RequestService) {
-    this.service.getAllPosts(localStorage.getItem('username')).pipe(map((req: Array<any>) => {
-      
+    this.service.getAllPosts(localStorage.getItem('username')).pipe(map((req: Array<Request>) => {
+      console.log(req)
+        console.log(req)
       if (req) {
         var i = 1;
+        console.log(req)
         console.log(req)
         req.forEach((erg) => {
           erg.req_id = i;
           this.id_list.push(erg.req_id);
           erg.date=erg.date.slice(0,10).toString();
           var full_name = erg.first_name.toString()+' '+erg.family_name.toString()
-          this.service.req.push({id:erg.req_id,date:erg.date, name:full_name, type: erg.type, topic:erg.topic, state: erg.state});
+          this.service.req.push({req_id:i,date:erg.date, name:full_name, first_name:erg.first_name, family_name:erg.family_name,university:erg.university,type: erg.type, topic:erg.topic, state: erg.state});
           i++;
         });
-      }
-      console.log('result')
-      console.log(this.req)
-       // <<<=== missing return
-    })).subscribe(post=>{
-    })
+        if(i==1){
+          this.isEmpty = true;
+        }
+      }  
+    })).subscribe()
     
     this.requests$ = this.service.requests$;
     this.total$ = service.total$;

@@ -12,8 +12,8 @@ export class RequestService {
     return this.http.get('http://localhost:4600/posts/'+username)
   }
 
-  getOneRequest(id:number):Observable<Object>{
-    return this.http.get('http://localhost:4600/dashboard/request-detail/'+id);
+  getOneRequest(id:number,username:string):Observable<Object>{
+    return this.http.get('http://localhost:4600/dashboard/request-detail/'+id+'/'+username);
   }
 
   deny(id:number, user:string){

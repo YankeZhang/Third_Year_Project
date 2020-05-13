@@ -24,7 +24,17 @@
       </div>
       
     </div>
-    <table class="table table-striped">
+    <div class="card mb-3 widget-chart" *ngIf="this.isEmpty">
+      <div class="icon-wrapper rounded-circle">
+        <div class="icon-wrapper-bg bg-primary"></div>
+        <i class="lnr-cog text-primary"></i></div>
+      <div class="widget-numbers"><span></span></div>
+      <div class="widget-subheading">You have no request to view</div>
+      <div class="widget-description text-success">
+        
+        <span class="pl-1"><span></span></span></div>
+    </div>
+    <table  *ngIf="!this.isEmpty" class="table table-striped">
       <thead>
       <tr>
         <th scope="col" class="text-center">ID</th>
@@ -41,35 +51,33 @@
           <tr *ngFor="let request of requests$  | async ">
               <th scope="row" class="text-center">
                   <a routerLinkActive="active-item" routerLink="/forms/sticky-headers" class="vsm-link"> 
-                    {{request.id}}
-   
-  </a></th>
+                    {{request.req_id}} </a></th>
 
               <td class="text-center">
-                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.id}" class="vsm-link">
+                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.req_id, username:request.username}" class="vsm-link">
 
                       <ngb-highlight [result]="request.date" [term]="service.searchTerm"></ngb-highlight>
                   </a>
               </td>
               <td class="text-center">
-                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.id}" class="vsm-link">
+                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.req_id, username:request.username}" class="vsm-link">
                       <ngb-highlight [result]="request.name" [term]="service.searchTerm"></ngb-highlight>
                   </a>
               </td>
               
               <td class="text-center">
-                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.id}" class="vsm-link">
+                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.req_id, username:request.username}" class="vsm-link">
                       <ngb-highlight [result]="request.type" [term]="service.searchTerm"></ngb-highlight>
                   </a>
               </td>
 
               <td class="text-center">
-                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.id}" class="vsm-link">
+                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.req_id, username:request.username}" class="vsm-link">
                       <ngb-highlight [result]="request.topic" [term]="service.searchTerm"></ngb-highlight>
                   </a>
               </td>
               <td class="text-center">
-                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.id}" class="vsm-link">
+                  <a routerLinkActive="active-item" [routerLink]="['/dashboard/req-detail']" [queryParams]="{id:request.req_id, username:request.username}" class="vsm-link">
                       <ngb-highlight [result]="request.state" [term]="service.searchTerm"></ngb-highlight>
                   </a>
               </td>

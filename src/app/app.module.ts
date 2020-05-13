@@ -226,7 +226,7 @@ import {IBMStickyHeadersComponent} from './ibm/sticky-headers/sticky-headers.com
 // Apex Charts
 
 import {NgApexchartsModule} from 'ng-apexcharts';
-import {SeriesPipe} from './DemoPages/Charts/apexcharts/series.pipe';
+
 
 // Gauges Charts
 
@@ -253,9 +253,7 @@ const route = [
     path: 'dashboard',
     component: BaseLayoutComponent,
     children: [
-
-      // Dashboads
-
+      // University Dashboads
       {path: '', component: AnalyticsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
       {path: 'analytics', component: AnalyticsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
       {path: 'university', component: UniversityComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
@@ -264,26 +262,15 @@ const route = [
       {path:'req-detail', component: ReqDetailComponent,data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] }, 
       {path:'userbox', component: UserBoxComponent,data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] }, 
       {path: 'calendar', component: CalendarComponent, data: {extraParameter: 'componentsMenu'}, canActivate:[AuthGuard]},
-      
       {path: 'maps', component: MapsComponent, data: {extraParameter: 'componentsMenu'}, canActivate:[AuthGuard]},
-      
-
-
-
-      
-      {path: 'sticky-headers', component: StickyHeadersComponent, data: {extraParameter: 'formElementsMenu'}, canActivate:[AuthGuard]},
-
-      
+      {path: 'sticky-headers', component: StickyHeadersComponent, data: {extraParameter: 'formElementsMenu'}, canActivate:[AuthGuard]}
     ]
-
   },
   {
     path:'ibm',
     component: IBMBaseLayoutComponent,
     children: [
-
-      // Dashboads
-
+      // IBM Dashboads
       {path: '', component: IBMAnalyticsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
       {path: 'analytics', component: IBMAnalyticsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
       {path: 'university', component: IBMUniversityComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
@@ -291,18 +278,10 @@ const route = [
       {path: 'requests', component: IBMRequestsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
       {path: 'pdf', component: IBMLayoutComponent, data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] },
       {path:'req-detail', component: IbmReqDetailComponent,data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] }, 
-      
       {path: 'calendar', component: IBMCalendarComponent, data: {extraParameter: 'componentsMenu'}, canActivate:[AuthGuard]},
-      
       //{path: 'maps', component: IBMMapsComponent, data: {extraParameter: 'componentsMenu'}, canActivate:[AuthGuard]},
       {path: 'sticky-headers', component: IBMStickyHeadersComponent, data: {extraParameter: 'formElementsMenu'}, canActivate:[AuthGuard]},
-
-      
     ]
-  },
-  {
-    path: 'posts',
-    component: PostsComponent,
   },
   {
     path: 'login',
@@ -325,16 +304,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   acceptedFiles: 'image/*'
 };
 
-// const Routes = [
-//   {
-//     path:'',
-//     redirectTo:'posts',
-//     pathMatch:'full'
-//   },
-//   {
-//     path:'posts', component:PostsComponent
-//   }
-// ];
+
 @NgModule({
   declarations: [
 

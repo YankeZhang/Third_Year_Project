@@ -63,7 +63,7 @@
               </ng-template>
             </ngb-tab>
           </ngb-tabset> -->
-          <form>
+          <form  (keydown)="keyLogin($event)">
             <div  class="row">
               <div class="col-md-6">
                 <fieldset class="form-group">
@@ -90,9 +90,10 @@
             </p></div>
             <div class="divider"></div>
             <div class="d-flex align-items-center">
-              <div class="ml-auto"><a [routerLink]="" class="btn-lg btn btn-link">Recover
-                Password</a>
-                <button type="button" class="btn btn-primary btn-lg" (click) = "Login()">
+              <div class="ml-auto">
+                <!-- <a [routerLink]="" class="btn-lg btn btn-link">Recover
+                Password</a> -->
+                <button type="button" class="btn btn-primary btn-lg"  (click) = "Login()">
                   <!-- <a routerLink="/dashboard/analytics" routerLinkActive="active-item" class="vsm-link"> -->
                     Login to Dashboard
                   <!-- </a> -->

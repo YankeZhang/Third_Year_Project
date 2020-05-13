@@ -25,7 +25,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { CalendarService } from 'src/app/services/calendar.service';
 
-import { map } from 'rxjs/operators';
+import { map, timeout } from 'rxjs/operators';
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -69,79 +69,48 @@ export class CalendarComponent {
 
   
   actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
-      onClick: ({event}: { event: CalendarEvent }): void => {
-        this.handleEvent('Edited', event);
-      }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({event}: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      }
-    }
-  ];
-
-  refresh: Subject<any> = new Subject();
-
-  events: CalendarEvent[] = [
     // {
-    //   start: subDays(startOfDay(new Date()), 1),
-    //   end: addDays(new Date(), 1),
-    //   title: ' day event',
-    //   color: colors.red,
-    //   actions: this.actions,
-    //   allDay: true,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true
-    //   },
-    //   draggable: true
+    //   label: '<i class="fa fa-fw fa-pencil"></i>',
+    //   onClick: ({event}: { event: CalendarEvent }): void => {
+    //     this.handleEvent('Edited', event);
+    //   }
     // },
     // {
-    //   start: startOfDay(new Date()),
-    //   title: 'An event with no end date',
-    //   color: colors.yellow,
-    //   actions: this.actions
-    // },
-    // {
-    //   start: subDays(endOfMonth(new Date()), 3),
-    //   end: addDays(endOfMonth(new Date()), 3),
-    //   title: 'A long event that spans 2 months',
-    //   color: colors.blue,
-    //   allDay: true
-    // },
-    // {
-    //   start: addHours(startOfDay(new Date()), 2),
-    //   end: new Date(),
-    //   title: 'A draggable and resizable event',
-    //   color: colors.yellow,
-    //   actions: this.actions,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true
-    //   },
-    //   draggable: true
+    //   label: '<i class="fa fa-fw fa-times"></i>',
+    //   onClick: ({event}: { event: CalendarEvent }): void => {
+    //     this.events = this.events.filter(iEvent => iEvent !== event);
+    //     this.handleEvent('Deleted', event);
+    //   }
     // }
   ];
 
-  activeDayIsOpen = true;
-
-  constructor(private modal: NgbModal, private http: HttpClient, private service: CalendarService) {
+  getData(){
+    var result = [];
     this.service.getAllRequests().pipe(map((req:Array<any>)=>{
       if (req) {
           req.forEach((erg) => {
-            
-                console.log(erg.Datetime)
-                this.events.push({
+            var color = colors.red
+            switch(erg.type){
+              case "Lecture":{
+                color = colors.green;
+              } break;
+              case "Hachathon":{
+                color = colors.yellow;
+              } break;
+              case "Student Support":{
+                color = colors.blue;
+              } break;
+              case "General Event":{
+                color = colors.red;
+              } break;
+            }
+                result.push({
                   start: new Date(erg.start),
                   end: new Date(erg.end),
                   title: erg.first_name+" from:"+erg.university+", event:"+erg.type+" location: "+erg.postcode,
-                  color: colors.red,
+                  color: color,
                   actions: this.actions,
-                  allDay: true,
+                  allDay: false,
                   resizable: {
                     beforeStart: false,
                     afterEnd: false
@@ -150,16 +119,38 @@ export class CalendarComponent {
                 },);
               });
               }
+              return result
+              //this.dayClicked({date:new Date(),events : [] })
     })).subscribe(post=>{
+      this.refresh.next()
       console.log(this.events);
-      //this.request = post;
+      return result;
     })
+    return result;
+
+  }
+
+  refresh: Subject<any> = new Subject();
+
+  events: CalendarEvent[] = this.getData()
+  
+
+  activeDayIsOpen = true;
+
+  constructor(private modal: NgbModal, private http: HttpClient, private service: CalendarService) {
+    console.log("constructer")
+    timeout(200)
+    
+    this.setView(CalendarView.Week)
+    this.setView(CalendarView.Month)
+    
   }
   ngOnInit(){
     
   }
 
   dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
+    console.log({date, events})
     if (isSameMonth(date, this.viewDate)) {
       this.viewDate = date;
       if (
@@ -213,9 +204,7 @@ export class CalendarComponent {
   //   ];
   // }
 
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter(event => event !== eventToDelete);
-  }
+  
 
   setView(view: CalendarView) {
     this.view = view;

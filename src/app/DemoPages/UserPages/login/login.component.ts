@@ -40,20 +40,12 @@ export class LoginComponent implements OnInit {
       this.isCorrect = false;
       console.error(error);
     })
-    
-    // .subscribe((res:any)=>{
-    //     console.log(res)
-    //     console.log(res)
-    //     var type = res.type;
-    //     localStorage.setItem('token',res.token.toString());
-    //     localStorage.setItem('username',this.userdata.email);
-    //     if(type == 'university'){
-    //       this.router.navigateByUrl('/dashboard/analytics');
-    //     }
-    //     else{
-    //       this.router.navigateByUrl('/ibm/analytics');
-    //     }
-    // })
+  }
+  
+  keyLogin(event){
+    if(event.keyCode == 13){
+      this.Login()
+    }
   }
   
   ngOnInit() {

@@ -8,5 +8,5 @@ import {Component} from '@angular/core';
 
 export class AppComponent {
   
-  title = 'ArchitectUI - Angular 7 Bootstrap 4 & Material Design Admin Dashboard Template';
+  title = 'IBM dashboard';
 }
