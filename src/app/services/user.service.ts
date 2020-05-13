@@ -9,13 +9,13 @@ export class UserService {
 
   }
   getUserInfo(id){
-    var result = this.http.post('http://localhost:4600/user',{user:id});
+    var result = this.http.post('http://51.11.129.83:4600/user',{user:id});
     console.log(result);
     return result;
   }
 
   getIBMUserInfo(id){
-    var result = this.http.post('http://localhost:4600/ibm/user',{user:id});
+    var result = this.http.post('http://51.11.129.83:4600/ibm/user',{user:id});
     console.log(result);
     return result;
   }

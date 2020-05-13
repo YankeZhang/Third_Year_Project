@@ -87,7 +87,7 @@ export class RequestService {
 
   getAllPosts(): Observable<any> {
     
-    return this.http.get('http://localhost:4600/ibm/requests')
+    return this.http.get('http://51.11.129.83:4600/ibm/requests')
     
   };
   
@@ -111,33 +111,12 @@ export class RequestService {
 
   private _search(): Observable<SearchResult> {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
-    
-    
     // 1. sort
-
-    // console.log(this.req)
-    //console.log(this.http.get('http://localhost:4600/posts/'))
-    // var req = this.http.get('http://localhost:4600/posts').subscribe(data => {
-    //   var a = data[0].name;
-    //   console.log(a);
-    // })
-
-      // .map((req: Array<any>) => {
-          
-      //     req.forEach((erg) => {
-      //       REQUESTS.push({id:erg.req_id,date:erg.date, name:erg.name, university:erg.university, type: erg.type, topic:erg.topic, state: erg.state});
-      //     });
-        
-      //    // <<<=== missing return
-      // })
     let requests = sort(this.req, sortColumn, sortDirection);
-    
-    
     // 2. filter
     //console.log(requests)
     requests = requests.filter(Request => matches(Request, searchTerm, this.pipe));
     const total = requests.length;
-
     // 3. paginate
     requests = requests.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
     return of({requests, total});

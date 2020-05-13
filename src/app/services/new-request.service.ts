@@ -8,7 +8,7 @@ export class NewRequestService {
 
   constructor(private http:HttpClient) { }
   submitForm(form:any){
-    this.http.post('http://localhost:4600/forms/stickyheader/', form).subscribe(next => {
+    this.http.post('http://51.11.129.83:4600/forms/stickyheader/', form).subscribe(next => {
       console.log(form)
     });
   }
