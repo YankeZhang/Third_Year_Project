@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 
 var corsOptions = {
-    origin: 'http://51.11.129.83:4200',
+    origin: 'http://51.11.129.83',
     optionsSuccessStatus: 200 // 
   }
 app.use(cors(corsOptions))
