@@ -1,6 +1,40 @@
 <div class="h-100">
   <div class="row h-100 no-gutters">
-    <div class="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center col-md-12 col-lg-7">
+    <div class="d-none d-lg-block col-lg-4">
+      <div class="slider-light">
+        <ngx-slick-carousel class="slick-slider slick-dotted" #slickModal="slick-carousel"
+                            [config]="slideConfig2">
+          <div ngxSlickItem>
+            <div class="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate">
+              <div class="slide-img-bg"></div>
+              <div class="slider-content text-light"><h3>Data Visualisation</h3>
+                <p>
+                  With IBM UK University Relation Management System, People can communicate and work together with richly formatted charts, tables, chalendar, maps, and more.
+                </p></div>
+            </div>
+          </div>
+          <div ngxSlickItem>
+            <div class="position-relative h-100 d-flex justify-content-center align-items-center bg-premium-dark">
+              <div class="slide-img-bg"></div>
+              <div class="slider-content text-light"><h3>Book events with IBM</h3>
+                <p>
+                  IBM UK University Relation Management System allows you to book and track events in a handy way
+                </p></div>
+            </div>
+          </div>
+          <div ngxSlickItem>
+            <div class="position-relative h-100 d-flex justify-content-center align-items-center bg-sunny-morning">
+              <div class="slide-img-bg opacity-6"></div>
+              <div class="slider-content text-light"><h3>Generate repots</h3>
+                <p>
+                  Generate working reports in an quick and simple way.
+                </p></div>
+            </div>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+    <div class="h-100 d-flex bg-white justify-content-center align-items-center col-md-12 col-lg-8">
       <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
         <div class="app-logo"></div>
         <h4>
@@ -114,22 +148,6 @@
             </div>
           </form>
         </div>
-      </div>
-    </div>
-    <div class="d-lg-flex d-xs-none col-lg-5">
-      <div class="slider-light">
-        <ngx-slick-carousel class="slick-slider slick-dotted" #slickModal="slick-carousel"
-                            [config]="slideConfig2">
-          <div ngxSlickItem>
-            <div class="position-relative h-100 d-flex justify-content-center align-items-center bg-plum-plate">
-              <div class="slider-content text-light"><h3>Perfect Balance</h3>
-                <p>
-                  ArchitectUI is like a dream. Some think it's too good to be true! Extensive collection of
-                  unified Vue Bootstrap Components and Elements.
-                </p></div>
-            </div>
-          </div>
-        </ngx-slick-carousel>
       </div>
     </div>
   </div>
