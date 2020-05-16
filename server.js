@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 
 var corsOptions = {
-    origin: ['http://51.11.129.83:4200', 'http://localhost:4200'],
+    origin: ['http://51.11.129.83', 'http://localhost:4200'],
     optionsSuccessStatus: 200 // 
   }
 app.use(cors(corsOptions))
@@ -25,7 +25,7 @@ app.use(cors(corsOptions))
 const connection = mysql.createConnection({
     host     : 'localhost',
     port     :   3306,
-    user     : 'user',
+    user     : 'root',
     password : '123',
     database : 'IBMProject'
   });
