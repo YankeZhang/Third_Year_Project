@@ -239,9 +239,9 @@ import { PostsComponent } from './posts/posts.component';
 import { RequestService } from './services/request.service';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './services/auth.guard';
-import { PdfComponent } from './pdf/pdf.component';
+
 import { DocumentEditorModule } from '@txtextcontrol/tx-ng-document-editor';
-import { IBMLayoutComponent } from './ibm/layout/layout.component';
+import {PdfComponent} from './ibm/layout/layout.component';
 import { ReqDetailComponent } from './DemoPages/Dashboards/requests/req-detail/req-detail.component';
 import { IbmReqDetailComponent } from './ibm/requests/ibm-req-detail/ibm-req-detail.component';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -257,8 +257,7 @@ const route = [
       {path: '', component: AnalyticsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
       {path: 'analytics', component: AnalyticsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
       {path: 'university', component: UniversityComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
-      {path: 'requests', component: RequestsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
-      {path: 'pdf', component: PdfComponent, data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] },
+      {path: 'requests', component: RequestsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},{path: 'pdf', component: PdfComponent, data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] },
       {path:'req-detail', component: ReqDetailComponent,data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] }, 
       {path:'userbox', component: UserBoxComponent,data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] }, 
       {path: 'calendar', component: CalendarComponent, data: {extraParameter: 'componentsMenu'}, canActivate:[AuthGuard]},
@@ -276,7 +275,7 @@ const route = [
       {path: 'university', component: IBMUniversityComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
       {path: 'university-detail', component: IBMUniversityDetailsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
       {path: 'requests', component: IBMRequestsComponent, data: {extraParameter: 'dashboardsMenu'}, canActivate:[AuthGuard]},
-      {path: 'pdf', component: IBMLayoutComponent, data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] },
+      {path: 'pdf', component: PdfComponent, data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] },
       {path:'req-detail', component: IbmReqDetailComponent,data: {extraParameter: 'dashboardsMenu'},canActivate:[AuthGuard] }, 
       {path: 'calendar', component: IBMCalendarComponent, data: {extraParameter: 'componentsMenu'}, canActivate:[AuthGuard]},
       //{path: 'maps', component: IBMMapsComponent, data: {extraParameter: 'componentsMenu'}, canActivate:[AuthGuard]},
@@ -322,7 +321,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     IBMPagesLayoutComponent,
     IBMHeaderComponent,
     IBMPageTitleComponent,
-    IBMLayoutComponent,
+    PdfComponent,
     // HEADER
 
     HeaderComponent,

@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 
 var corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: ['http://51.11.129.83:4200', 'http://localhost:4200'],
     optionsSuccessStatus: 200 // 
   }
 app.use(cors(corsOptions))
@@ -116,36 +116,38 @@ app.route('/token/:token').get((req,res)=>{
 })
 
 //register
-
 app.post('/register', (req, res)=>{
+    //get account data
     var data = req.body;
     console.log(data);
     var username = data.email;
+    //check if account exists in university staff table
     connection.query('SELECT email from university_staff where email=\''+username+'\'', function (error, results, fields) {
         if (error) throw error;
+        //if exists, send error message
         if(results[0]!=undefined){
             res.status(401).send('Account already exist!')
             return
         }else{
+            //check if account exists in ibm staff table
             connection.query('SELECT email from IBM_staff where email=\''+username+'\'', function (error, results, fields) {
                 if (error) throw error;
+                 //if exists, send error message
                 if(results[0]!=undefined){
                     res.status(401).send('Account already exist!')
                     return
                 }else{
-                    
+                    //create accout, insert to table
                     var sql = "INSERT INTO university_staff (first_name,family_name, job_title,university,email, phone, user_name, password, department) VALUES (\'"+data.first_name+"','"+data.family_name+"','"+data.job_title+"','"+ data.university+"','"+  data.email+"','"+ data.phone+"','"+ data.email+"','"+data.password+"','"+data.department+"')"
                     connection.query(sql, function (err, result) {
                     if (err) throw err;
                     console.log("added");
-                    res.status(200).send({res:'hi'});
+                    res.status(200).send({res:'created'});
                     });
                 }
             });
         }
     });
-
-
 })
   
   
@@ -260,7 +262,7 @@ app.route('/dashboard/pdf/:id').get((req, res)=>{
     
 })
 
-
+// construct condition for report page when user selects data to be printed
 function construct_condtion(data){
     condition_sql = "true"
     date = data.date;
@@ -268,24 +270,27 @@ function construct_condtion(data){
     type = data.type;
     uni_staff=data.uni_staff;
     ibm_staff=data.ibm_staff;
-    
-    //console.log(data)
+    //append date condition
     if(date!='' && date!='Any'){
         
         var date_threshold = dateChange(parseInt(date))
         
         condition_sql+=' and request.date>\''+date_threshold+'\''
     }
+    //append university condition
     if(university!='' && university!='Any'){
         condition_sql+=' and request.university=\''+university+'\''
     }
+    //append event type condition
     if(type!='' && type!='Any'){
         condition_sql+=' and request.type=\''+type+'\''
     }
+    //append university staff condition
     if(uni_staff!='' && (uni_staff.first_name!='Any' && uni_staff.family_name!=' ')){
         
         condition_sql+=' and request.first_name=\''+uni_staff.first_name+'\' and request.family_name=\''+uni_staff.family_name+'\''
     }
+    //append ibm_staff condition
     if(ibm_staff!='' && ibm_staff!='Any'){
         condition_sql+=' and request.ibm_staff=\''+ibm_staff+"'"
     }
