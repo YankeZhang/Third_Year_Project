@@ -191,16 +191,22 @@ page: number = 1;
   @ViewChild('content') content: ElementRef;
 
   makePdf() { 
+    //get html element to be print
     html2canvas(document.querySelector("#content")).then(canvas => {
+      //parse to png
         const imgData = canvas.toDataURL('image/png');
+        //create a new pdf object
         const pdf = new jsPDF(
           'p','pt','a4'
         );
+        //Let it load the image property
         const imgProps= pdf.getImageProperties(imgData);
+        //set pdf size
         const pdfWidth = (pdf.internal.pageSize.getWidth());
         const pdfHeight = ((imgProps.height * pdfWidth) / imgProps.width);
-        pdf.addImage(imgData, 'PNG', -10, 50, pdfWidth+20, pdfHeight+20);
-        pdf.save('download.pdf');
+        pdf.addImage(imgData, 'PNG', -10, 10, pdfWidth+20, pdfHeight+20);
+        //download it
+        pdf.save('Report.pdf');
     });
   }
 
@@ -244,19 +250,5 @@ page: number = 1;
       f.value.uni_staff=temp[0]+','+temp[1]
       console.error(error);
     })
-  //   .pipe(map((req:any)=>{
-  //     this.response(req);
-  //   }
-  //   )).subscribe(post=>{
-  //     //console.log(this.req_num);
-  //     var i = 0;
-  //     this.date.map((date:string)=>{
-  //       date=date.slice(0,10).toString().replace(/-/g, '/')
-  //       this.date[i]=date;
-  //       i++;
-  //     })
-  //     //console.log(this.date)
-  //    })
-  
-  // }
+
 }}

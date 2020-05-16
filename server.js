@@ -427,6 +427,29 @@ app.route('/dashboard/request-detail/:id/:username').get((req, res)=>{
     });
 })
 
+app.route('/ibm/request-detail/:id').get((req, res)=>{
+    id = req.params.id;
+    username = req.params.username
+    connection.query('SELECT * FROM request where req_id = '+id+';', function (error, results, fields) {
+        if (error) throw error;
+       // //console.log(results[id-1]);
+        res.send(results[0]);
+        
+    });
+})
+
+// app.route('/ibm/request-detail/:university/:id').get((req, res)=>{
+//     university = req.params.university
+//     id = req.params.id;
+//     username = req.params.username
+//     connection.query('SELECT * FROM request where id =id+;', function (error, results, fields) {
+//         if (error) throw error;
+//        // //console.log(results[id-1]);
+//         res.send(results[0]);
+        
+//     });
+// })
+
 
 app.route('/ibm/university-detail/:university').get((req, res)=>{
     university = req.params.university;

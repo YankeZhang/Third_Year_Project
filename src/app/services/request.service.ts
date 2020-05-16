@@ -16,6 +16,10 @@ export class RequestService {
     return this.http.get('http://51.11.129.83:4600/dashboard/request-detail/'+id+'/'+username);
   }
 
+  getOneIBMRequest(id:number):Observable<Object>{
+    return this.http.get('http://51.11.129.83:4600/ibm/request-detail/'+id);
+  }
+
   deny(id:number, user:string){
     this.http.post('http://51.11.129.83:4600/forms/request/', {type:'deny',id:id, user:user}).subscribe(next => {
       console.log('denied');

@@ -32,7 +32,7 @@ export class IbmReqDetailComponent implements OnInit {
   private reqid:number;
   constructor(private routeInfo:ActivatedRoute, private router: Router, private service:RequestService) {
     this.productId = this.routeInfo.snapshot.queryParams['id'];
-    this.service.getOneRequest(this.productId, localStorage.getItem('username')).pipe(map((req:any)=>{
+    this.service.getOneIBMRequest(this.productId).pipe(map((req:any)=>{
     
       if (req) {
         console.log(req)

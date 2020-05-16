@@ -31,11 +31,12 @@ export class IBMRequestsComponent {
         var i = 1;
         console.log(req)
         req.forEach((erg) => {
+          var real_id = erg.req_id
           erg.req_id = i;
           this.id_list.push(erg.req_id);
           erg.date=erg.date.slice(0,10).toString();
           var full_name = erg.first_name.toString()+' '+erg.family_name.toString()
-          this.service.req.push({id:erg.req_id,date:erg.date, name:full_name,university:erg.university,type: erg.type, topic:erg.topic, state: erg.state});
+          this.service.req.push({id:erg.req_id,real_id:real_id,date:erg.date, name:full_name,university:erg.university,type: erg.type, topic:erg.topic, state: erg.state});
           i++;
         });
       }
@@ -57,11 +58,12 @@ export class IBMRequestsComponent {
         var i = 1;
         console.log(req)
         req.forEach((erg) => {
+          var real_id = erg.req_id
           erg.req_id = i;
           this.id_list.push(erg.req_id);
           erg.date=erg.date.slice(0,10).toString();
           var full_name = erg.first_name.toString()+' '+erg.family_name.toString()
-          this.service.req.push({id:erg.req_id,date:erg.date, name:full_name,university:erg.university,type: erg.type, topic:erg.topic, state: erg.state});
+          this.service.req.push({id:erg.req_id,real_id:real_id,date:erg.date, name:full_name,university:erg.university,type: erg.type, topic:erg.topic, state: erg.state});
           i++;
         });
       }

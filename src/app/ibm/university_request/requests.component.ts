@@ -25,6 +25,7 @@ export class IBMUniRequestsComponent {
   @ViewChildren(NgbdSortableHeaderDirective) headers: QueryList<NgbdSortableHeaderDirective>;
   req: Request[] = [];
   id_list: number[]=[];
+  real_id_list: number[] = [];
   private name:string;
   constructor(public service: RequestService, private routerInfo:ActivatedRoute) {
     this.name= this.routerInfo.snapshot.queryParams['university'];
@@ -35,11 +36,13 @@ export class IBMUniRequestsComponent {
         var i = 1;
         console.log(req)
         req.forEach((erg) => {
+          var real_id = erg.req_id
+          this.real_id_list.push(erg.req_id)
           erg.req_id = i;
           this.id_list.push(erg.req_id);
           erg.date=erg.date.slice(0,10).toString();
           var full_name = erg.first_name.toString()+' '+erg.family_name.toString()
-          this.service.req.push({id:erg.req_id,date:erg.date, name:full_name,university:erg.university,type: erg.type, topic:erg.topic, state: erg.state});
+          this.service.req.push({id:erg.req_id,real_id:real_id, date:erg.date, name:full_name,university:erg.university,type: erg.type, topic:erg.topic, state: erg.state});
           i++;
         });
       }
@@ -61,11 +64,13 @@ export class IBMUniRequestsComponent {
         var i = 1;
         console.log(req)
         req.forEach((erg) => {
+          var real_id = erg.req_id
+          this.real_id_list.push(erg.req_id)
           erg.req_id = i;
           this.id_list.push(erg.req_id);
           erg.date=erg.date.slice(0,10).toString();
           var full_name = erg.first_name.toString()+' '+erg.family_name.toString()
-          this.service.req.push({id:erg.req_id,date:erg.date, name:full_name,university:erg.university,type: erg.type, topic:erg.topic, state: erg.state});
+          this.service.req.push({id:erg.req_id,real_id:real_id,date:erg.date, name:full_name,university:erg.university,type: erg.type, topic:erg.topic, state: erg.state});
           i++;
         });
       }
