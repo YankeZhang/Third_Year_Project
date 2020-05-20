@@ -192,7 +192,7 @@ page: number = 1;
   @ViewChild('content') content: ElementRef;
 
   makePdf() { 
-    html2canvas(document.querySelector("#content")).then(canvas => {
+    html2canvas(document.getElementById("content")).then(canvas => {
         const imgData = canvas.toDataURL('image/png');
         const pdf = new jsPDF(
           'p','pt','a4'

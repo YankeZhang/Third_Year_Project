@@ -53,8 +53,6 @@ export class RegisterComponent implements OnInit {
       this.validEmail = false;
       console.error(error);
     })
-    
-    //this.router.navigateByUrl('/dashboard/requests');
   }
 
   ngOnInit() {

@@ -148,7 +148,9 @@ describe('get requests',()=>{
     })
 })
 
+//login service
 describe('Login service',()=>{
+    //test on correct university account login
     it('should login to university dashboard with university account',(done)=>{
         chai.request(app)
         .post('/login')
@@ -160,6 +162,7 @@ describe('Login service',()=>{
             done()
         })
     })
+    //test correct IBM account login
     it('should login to IBM dashboard with IBM account',(done)=>{
         chai.request(app)
         .post('/login')
@@ -171,6 +174,7 @@ describe('Login service',()=>{
             done()
         })
     })
+    //wrong username
     it('should fail to login with wrong email',(done)=>{
         chai.request(app)
         .post('/login')
@@ -182,6 +186,7 @@ describe('Login service',()=>{
             done()
         })
     })
+    //wrong password
     it('should fail to login with wrong password',(done)=>{
         chai.request(app)
         .post('/login')
