@@ -9,7 +9,7 @@ export class MapService {
   constructor(private http: HttpClient) { }
 
   getAllLocation(): Observable<Object>{
-    return this.http.get("http://51.11.129.83:4600/components/map")
+    return this.http.get("http://51.105.27.186:4600/components/map")
   }
   
 }

@@ -9,6 +9,6 @@ export class CalendarService {
   constructor(private http: HttpClient) {}
 
   getAllRequests(): Observable<Object> {
-    return this.http.get('http://51.11.129.83:4600/components/calendar')
+    return this.http.get('http://51.105.27.186:4600/components/calendar')
   }
 }

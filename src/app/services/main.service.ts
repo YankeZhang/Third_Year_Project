@@ -9,18 +9,18 @@ export class MainService {
   constructor(private http:HttpClient) { }
 
   getDatawithPara(username: string):Observable<Object>{
-    return this.http.get('http://51.11.129.83:4600/dashboard/analytics/'+username);
+    return this.http.get('http://51.105.27.186:4600/dashboard/analytics/'+username);
   }
 
   getIBMDatawithPara(username: string):Observable<Object>{
-    return this.http.get('http://51.11.129.83:4600/ibm/analytics/'+username);
+    return this.http.get('http://51.105.27.186:4600/ibm/analytics/'+username);
   }
 
   getIBMUniversityInfo(){
-    return this.http.get('http://51.11.129.83:4600/ibm/university');
+    return this.http.get('http://51.105.27.186:4600/ibm/university');
   }
 
   getIBMUniversityDetailInfo(university:string){
-    return this.http.get('http://51.11.129.83:4600/ibm/university-detail/'+university);
+    return this.http.get('http://51.105.27.186:4600/ibm/university-detail/'+university);
   }
 }

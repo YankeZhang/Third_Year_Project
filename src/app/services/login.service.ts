@@ -11,14 +11,14 @@ export class LoginService {
 
   login(user){
     
-    return this.http.post('http://51.11.129.83:4600/login', user);
+    return this.http.post('http://51.105.27.186:4600/login', user);
 
 }
 
   
   register(form:any){
     
-    return this.http.post('http://51.11.129.83:4600/register', form);
+    return this.http.post('http://51.105.27.186:4600/register', form);
   }
 
 
@@ -29,7 +29,7 @@ export class LoginService {
     if(!!!localStorage.getItem('token')){
       return false
     }
-    this.http.get('http://51.11.129.83:4600/token/'+localStorage.getItem('token')).pipe(map((data:any)=>{
+    this.http.get('http://51.105.27.186:4600/token/'+localStorage.getItem('token')).pipe(map((data:any)=>{
       if(data==true){
         console.log("valid change to true")
         this.valid = true
