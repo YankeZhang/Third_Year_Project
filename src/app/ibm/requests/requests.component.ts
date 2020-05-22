@@ -50,7 +50,7 @@ export class IBMRequestsComponent {
   }
 
   refresh(){
-    
+    this.service.req = []
     this.service.getAllPosts().pipe(map((req: Array<any>) => {
       
       if (req) {
@@ -72,10 +72,12 @@ export class IBMRequestsComponent {
        // <<<=== missing return
     })).subscribe(post=>{
     })
-    this.onSort({column:'Date', direction:''});
+   
+    this.requests$ = this.service.requests$;
+    this.total$ = this.service.total$;
   }
   onSort({column, direction}: SortEvent) {
-
+    console.log(column, direction)
     // resetting other headers
     this.headers.forEach(header => {
       if (header.sortable !== column) {

@@ -55,6 +55,7 @@ export class RequestsComponent {
   }
 
   refresh(){
+    this.service.req = [];
     this.service.getAllPosts(localStorage.getItem('username')).pipe(map((req: Array<Request>) => {
       console.log(req)
         console.log(req)

@@ -87,7 +87,7 @@ export class RequestService {
 
   getAllPosts(university:string): Observable<any> {
     
-    return this.http.get('http://localhost:4600/ibm/university/requests/'+university);
+    return this.http.get('http://51.105.27.186:4600/ibm/university/requests/'+university);
     
   };
   

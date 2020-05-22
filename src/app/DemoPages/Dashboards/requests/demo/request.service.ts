@@ -89,7 +89,7 @@ export class RequestService {
 
   getAllPosts(username:string): Observable<any> {
     
-    return this.http.get('http://51.11.129.83:4600/dashboard/requests/'+username)
+    return this.http.get('http://51.105.27.186:4600/dashboard/requests/'+username)
     
   };
   

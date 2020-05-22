@@ -56,7 +56,7 @@ export class IBMUniRequestsComponent {
   }
 
   refresh(){
-    
+    this.service.req = [];
     this.service.getAllPosts(this.name).pipe(map((req: Array<any>) => {
       
       if (req) {

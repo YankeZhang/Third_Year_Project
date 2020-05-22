@@ -115,7 +115,7 @@ export class StaffService {
 
   getAllPosts(): Observable<any> {
   
-    return this.http.get('http://localhost:4600/ibm/table/staff')
+    return this.http.get('http://51.105.27.186:4600/ibm/table/staff')
     
   };
   private _search(): Observable<SearchResult> {
